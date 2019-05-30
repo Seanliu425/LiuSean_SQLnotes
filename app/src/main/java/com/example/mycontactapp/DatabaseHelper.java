@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.view.View;
 
 
 public class DatabaseHelper extends SQLiteOpenHelper{
@@ -58,19 +59,22 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
         long result = db.insert(TABLE_NAME, null, contentValues);
 
-        if (result == -1) {
+        if (result == -1)
+        {
             Log.d("MyContactApp", "Databasehelper: Contact insert FAILED");
             return false;
-        } else {
+        }
+        else
+        {
             Log.d("MyContactApp", "Databasehelper: Contact insert PASSED");
             return true;
         }
     }
-        public Cursor getAllData() {
-            SQLiteDatabase db = this.getWritableDatabase();
-            Cursor res = db.rawQuery("select + from" + TABLE_NAME, null);
-            return res;
 
-
-        }
+    public Cursor getAllData() {
+        Log.d("MyContactApp", "DatabaseHelper: getAllData called");
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select * from " + TABLE_NAME, null);
+        return res;
     }
+}
